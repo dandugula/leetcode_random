@@ -35,8 +35,9 @@ int main () {
   std::string s2 = "aspathand";
   std::string s3 = "d";
   std::string s4 = "d";
-  std::cout << longest_common_substring(s1, s2) << std::endl;
-  std::cout << longest_common_substring(s3, s4) << std::endl;
-  std::cout << longest_common_substring("", "") << std::endl;
+  
+  std::cout << longest_common_substring(s1, s2).c_str() << std::endl;
+  std::cout << longest_common_substring(s3, s4).c_str() << std::endl;
+  std::cout << longest_common_substring("", "").c_str() << std::endl;
   return 0;
 }
