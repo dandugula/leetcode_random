@@ -1,18 +1,19 @@
 class Solution {
 public:
     vector<int> singleNumber(vector<int>& nums) {
-        std::vector<int> ret = {0, 0};
-        int diff = std::accumulate(nums.begin(), nums.end(), 0, bit_xor<int>());
+        int diff = 0;
+        int unique_num1 = 0;
+        int unique_num2 = 0;
+
+        for(int aNum : nums) 
+            diff ^= aNum;
 
         diff &= -diff;
 
-        for(int aNum : nums) {
-            if(aNum & diff)
-                ret[0] ^= aNum;
-            else
-                ret[1] ^= aNum;
-        }
+        for(int aNum : nums) 
+            if(aNum & diff) unique_num1 ^= aNum;
+            else unique_num2 ^= aNum;
 
-        return ret;
+        return std::vector<int>({unique_num1, unique_num2});
     }
 };
