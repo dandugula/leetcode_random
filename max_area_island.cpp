@@ -25,12 +25,11 @@ private:
         temp.first = aPair.first + coOrdX[z];
         temp.second = aPair.second + coOrdY[z];
 
-        if(isValid(temp, g.size(), g[i].size())) {
-          if(g[temp.first][temp.second] == 1) {
+        if(isValid(temp, g.size(), g[i].size()) &&
+            1 == g[temp.first][temp.second]) {
 
             depthStack.push(std::make_pair(temp.first, temp.second));
             g[temp.first][temp.second] = -1;
-          }
         }  
       }
     }while(!depthStack.empty());
