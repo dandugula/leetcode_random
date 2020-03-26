@@ -3,15 +3,21 @@ public:
   vector<int> sumEvenAfterQueries(vector<int>& A, vector<vector<int>>& queries) {
     std::vector<int> res;
     int sum = 0;
+    int n = A.size();
 
-    std::for_each(A.begin(), A.end(), [&sum](auto a) {sum += a % 2 ? 0 : a;});
+    for(int i = 0; i < n; ++i)
+        sum += A[i] & 1 ? 0 : A[i];
 
-    std::for_each(queries.begin(), queries.end(), [&](auto aQuery){
-                    sum -= A[aQuery[1]] % 2 ? 0 : A[aQuery[1]];
-                    A[aQuery[1]] += aQuery[0];
-                    sum += A[aQuery[1]] % 2 ? 0 : A[aQuery[1]];
-                    res.push_back(sum);
-                  });
+    n = queries.size();
+
+    for(int i = 0; i < n; ++i) {
+
+        sum -= A[queries[i][1]] & 1 ? 0 : A[queries[i][1]];
+        A[queries[i][1]] += queries[i][0];
+        sum += A[queries[i][1]] & 1 ? 0 : A[queries[i][1]];
+
+        res.push_back(sum);
+    }
 
     return res;
   }
